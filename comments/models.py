@@ -8,11 +8,10 @@ class Comment(models.Model):
     
     name = models.CharField(
         max_length=40,
-        null=False, 
         blank=False,
         )
     city = models.CharField(
-        max_length=15,
+        max_length=20,
         default="none",
         null=False,
         blank=False,
@@ -24,9 +23,5 @@ class Comment(models.Model):
     )
     review = models.CharField(
         max_length=300,
-        null=False,
         blank=False,
-        ) 
-    
-    
-    
+        )     
