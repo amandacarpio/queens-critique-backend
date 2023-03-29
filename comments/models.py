@@ -25,3 +25,7 @@ class Comment(models.Model):
         max_length=300,
         blank=False,
         )     
+    yelpId = models.CharField(
+        max_length=40,
+        blank=False,
+    )
