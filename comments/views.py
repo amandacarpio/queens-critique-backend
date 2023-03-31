@@ -24,8 +24,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET', 'PUT'], detail=True)
     def individual_review(self, request, pk=None):
-        if(request.method == 'PUT'): 
-            return Response([request], status=status.HTTP_200_OK)  
         queryset = Comment.objects.filter(id = pk)
         serializer = self.get_serializer(queryset, many=True)
         if serializer.data:
