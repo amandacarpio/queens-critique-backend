@@ -21,3 +21,11 @@ class CommentViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response([], status=status.HTTP_200_OK)    
+
+    @action(methods=['GET'], detail=True)
+    def individual_review(self, request, pk=None):
+        queryset = Comment.objects.filter(id = pk)
+        serializer = self.get_serializer(queryset, many=True)
+        if serializer.data:
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response([], status=status.HTTP_200_OK)
