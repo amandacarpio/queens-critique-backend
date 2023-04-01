@@ -44,13 +44,16 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(instance=instance,
             data=data, # or request.data
             partial=True)
-        # queryset = Comment.objects.filter(id = pk)
-        # serializer = self.get_serializer(queryset)
-        # if serializer.data:
-        #     return Response(serializer.data, status=status.HTTP_200_OK)
-        # return Response([], status=status.HTTP_200_OK)
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    @action(methods=['DELETE'], detail=True)
+    def individual_review_delete(self, request, pk=None):
+        queryset = Comment.objects.filter(id = pk)
+        serializer = self.get_serializer(queryset, many=True)
+        if serializer.data:
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response([], status=status.HTTP_200_OK)
