@@ -31,7 +31,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response([], status=status.HTTP_200_OK)
     
     @action(methods=['PUT'], detail=True)
-    def individual_review(self, request, pk=None):
+    def individual_review_put(self, request, pk=None):
         print(self.get_object())
         instance=self.get_object()
         data={
