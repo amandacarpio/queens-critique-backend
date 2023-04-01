@@ -56,4 +56,5 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         if serializer.data:
             return Response(serializer.data, status=status.HTTP_200_OK)
+        queryset.delete()
         return Response([], status=status.HTTP_200_OK)
